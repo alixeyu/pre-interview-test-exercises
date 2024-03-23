@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ../
+      dockerfile: devops/Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ../.env
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+networks:
+  default:
