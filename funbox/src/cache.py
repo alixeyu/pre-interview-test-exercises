@@ -18,7 +18,7 @@ def cache_link_by_timestamp(links: list[str]) -> None:
         redis.set(unixtime, json.dumps(links))
 
 
-def get_links_by_time(start: int | None = None, end: int | None = None) -> list[str]:
+def get_links_by_timestamp(start: int | None = None, end: int | None = None) -> list[str]:
     if start and end and start > end:
         start, end = end, start
 

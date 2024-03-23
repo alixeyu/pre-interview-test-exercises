@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, Response
 
-from cache import cache_link_by_timestamp, get_links_by_time
+from cache import cache_link_by_timestamp, get_links_by_timestamp
 
 
 app = FastAPI()
@@ -20,10 +20,10 @@ async def visited_links(links: list[str]) -> Response:
 
 
 @app.get("/visited_domains/")
-def get_visited_links(ts_from: int | None = None, ts_to: int | None = None) -> Response:
+async def get_visited_links(ts_from: int | None = None, ts_to: int | None = None) -> Response:
     visited_links = set([])
 
-    for links in get_links_by_time(start=ts_from, end=ts_to):
+    for links in get_links_by_timestamp(start=ts_from, end=ts_to):
         visited_links |= set(links)
 
     return {"domains": visited_links, "status": "ok"}
