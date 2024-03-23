@@ -1,8 +1,7 @@
 FROM python:3.11-alpine
 
-ENV USER_ID=10001
-ENV USER_NAME=webapp
-ENV PORT=5000
+ARG USER_ID=10001
+ARG USER_NAME=webapp
 
 RUN
 
@@ -17,6 +16,5 @@ RUN pip install -r /app/requirements.txt
 COPY src/* /app/
 
 USER ${USER_NAME}
-EXPOSE ${PORT}
 
 ENTRYPOINT [ "python", "app.py" ]
