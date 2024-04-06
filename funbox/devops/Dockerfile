@@ -3,8 +3,6 @@ FROM python:3.11-alpine
 ARG USER_ID=10001
 ARG USER_NAME=webapp
 
-RUN
-
 RUN addgroup -g ${USER_ID} ${USER_NAME} && \
     adduser -DH --uid ${USER_ID} -G ${USER_NAME} ${USER_NAME}
 
